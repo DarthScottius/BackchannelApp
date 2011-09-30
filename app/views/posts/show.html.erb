@@ -2,13 +2,18 @@
 
 <p>
   <b>Post:</b>
-  <%= @post.post_id %>
-</p>
+  <%= @post.title%>
+  <% @post.replies.each do |reply|  %>
+      <tr>
+        <td><%= reply.replyText %></td>
+  <% end  %>
+
 
 <p>
   <b>Posted text:</b>
   <%= @post.post_text %>
 </p>
+
 
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
