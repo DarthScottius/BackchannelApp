@@ -26,7 +26,7 @@ class RepliesController < ApplicationController
   def new
     @reply = Reply.new
     #@reply.post_id = @post.id
-    @user =  User.find(session[:user_id])
+    #@user =  User.find(session[:user_id])
     if (@user) 
       @reply.user_id = @user.id
     else
@@ -47,10 +47,10 @@ class RepliesController < ApplicationController
   # POST /replies.json
   def create 
     @reply = Reply.last
-    
+    @reply.user_id =  current_user.id
     rep = (params[:reply])
     #@reply.update_attributes( :reply_text => rep.replytext )
-    @reply.update_attributes( :numvotes => 0.to_a )
+    @reply.update_attributes( :numvotes => 0 )
      #@reply.update_attributes( :user_id => @user.id )
      #@reply.user_id = current_user.id
      #@reply.save

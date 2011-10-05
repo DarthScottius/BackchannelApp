@@ -31,6 +31,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @replies = Reply.all
     @reply = Reply.new
+    @reply.user_id = current_user.id 
     @title = "User's Post"
     respond_to do |format|
       format.html # show.html.erb

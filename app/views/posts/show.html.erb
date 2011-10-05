@@ -3,8 +3,6 @@
         <% @user =  User.find(session[:user_id])%>
 <% end %>
  <%   if( @user )  %>
-
-
 <center>
 <p>
   <b><%u = User.find(@post.user_id)%> Question from <%= u.user_name %>:</b>
@@ -14,7 +12,8 @@
   <b>Responses: </b><br>
   <% @replies.each do |reply|%>
     <% if reply.post_id == @post.id %><br>
-        <%  reply.replytext %>
+        <% usr = User.find(reply.user_id) %>
+        <%= usr.user_name %> ---> <%= reply.replytext %>
     	<br>
     <% end%>
     <% if  @replies.count == 0  %>
@@ -25,9 +24,7 @@
  <center>
  
  	
- 	<% @reply = Reply.new %>
- 	<% @reply.post_id = @post.id; @reply.numvotes = 0;@reply.save %>
- 	<% @reply.user_id = @user.id %>
+
    <%= form_for(@reply) do  |f| %>
   
   <div class="field">
