@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 one:
-  voteType: 
-  voter: 
+  postid: 1
+  userid: 1
+  votetype: 1
 
 two:
-  voteType: 
-  voter: 
+  postid: 1
+  userid: 1
+  votetype: 1

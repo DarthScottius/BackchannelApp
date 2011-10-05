@@ -14,7 +14,14 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-
+    if( @user.role == 1 )
+      @user.role = 2
+    else
+      @user.role = 1
+    end
+    
+      @user.save
+     
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -53,6 +60,17 @@ class UsersController < ApplicationController
     end
   end
 
+def makeadmin
+  #@user = User.find(params[:userid])
+  #@user.role = 2;
+  @user = User.find(params[:id])
+ if( @user.role == 1 )
+      @user.role = 2
+  else
+      @user.role = 1
+  end
+      @user.save
+end
   # PUT /users/1
   # PUT /users/1.json
   def update

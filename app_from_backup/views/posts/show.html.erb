@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+
+
+
+<center>
+<p>
+  <b>Posted Question:</b>
+  <br>
+  <%= @post.title %>
+  <br><br>
+  <b>Responses: </b><br>
+  <% @replies.each do |reply|%>
+    <% if reply.post_id == @post.id %><br>
+        <%= reply.replytext %>
+    	<br>
+    <% end end%>
+    <% if  @replies.count == 0  %>
+    	<b>No Replies yet for this question</b>
+    <% end %> 
+    <%=  render 'formreply'  %>
+</p>
+</center>
+
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

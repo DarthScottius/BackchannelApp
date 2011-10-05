@@ -23,12 +23,34 @@ class VotesController < ApplicationController
 
   # GET /votes/new
   # GET /votes/new.json
-  def new postid 
-    @vote = Vote.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @vote }
+  def new 
+      #Vote.addvote params[:postid] , params[:votetype]
+      postid = params[:postid]
+      if params[:votetype] == 2.to_s
+        #Post.addvote params[:postid]
+        r = Reply.find(postid)
+       val = r.read_attribute(:numvotes)
+         if val.nil?  
+            val  = 0
+         else
+           val = val+1
+         end
+         r.update_attributes(:numvotes => val)
+         else
+            r = Post.find(postid)
+            val = r.read_attribute(:weight)
+            if( val.nil? )
+                val = 0;
+            else
+            val  = val +1;
+            end
+           r.update_attributes(:weight => val)
+           end
+        #Reply.addvote params[:postid]
+      respond_to do |format|
+        format.html { redirect_to '/', notice: 'Your vote was successfuly saved' }
+      #format.html # new.html.erb
+      #format.json { render json: @vote }
     end
   end
 

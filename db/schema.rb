@@ -11,12 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110930031618) do
+ActiveRecord::Schema.define(:version => 20111001224814) do
 
   create_table "posts", :force => true do |t|
-
-    t.integer  "post_id"
-    t.text     "post_text"
     t.integer  "weight"
     t.datetime "initialPostDate"
     t.boolean  "answered"
@@ -27,10 +24,10 @@ ActiveRecord::Schema.define(:version => 20110930031618) do
   end
 
   create_table "replies", :force => true do |t|
-    t.text     "replyText"
-    t.datetime "replyTime"
     t.integer  "post_id"
     t.integer  "user_id"
+    t.text     "replytext"
+    t.integer  "numvotes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -45,7 +42,9 @@ ActiveRecord::Schema.define(:version => 20110930031618) do
   end
 
   create_table "votes", :force => true do |t|
-    t.integer  "voteType"
+    t.integer  "postid"
+    t.integer  "userid"
+    t.integer  "votetype"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

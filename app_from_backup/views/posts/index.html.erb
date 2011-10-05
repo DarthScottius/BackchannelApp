@@ -1,0 +1,42 @@
+<%= link_to "Post a new question now", '/posts/new' ,{:class => 'post'}   %>
+<p>Admin Exclusive Controls </p>
+<%= link_to "Show all users", 'users'%>
+
+<%= form_tag posts_path , :method => 'get'  do  %>
+<p>
+	<%= text_field_tag :search ,  params[:search]%>
+	<%= submit_tag "search" ,:name => nil  %>
+</p>
+<% end %>
+<em class="top"><center><h1>TOP questions</h1>
+<p >
+<table>
+  <tr>
+  	<th>Vote</th>
+    <th>Post</th>
+    <th>Admin Exclusive</th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <tr ><% if post.weight.nil? 
+  	               val ="0" 
+  	               else 
+  	               	val = post.weight.to_s
+  	             end %><% str = "Votes:" +  val%>
+    <td><%= link_to str , :controller => "votes", :action => "new" ,:postid => post.id , :votetype => 1  %>&nbsp;<%= link_to post.title ,post %><font id="oblique">(Posted <%= time_ago_in_words(post.created_at) %>  ago)</font><br>
+    <b>Responses:</b> 
+    <% @replies.each do |reply|%>
+    <% if reply.post_id == post.id %><br>
+        <% str = "Votes:" + reply.numvotes.to_s %>
+    	<%= link_to str, :controller => "votes", :action => "new" ,:postid => reply.id , :votetype => 2  %> <%= reply.replytext %> 
+    <% end end%>
+    <br><br></td>
+    <td><%= link_to 'Delete', post, confirm: 'Are you sure?', method: :delete %></td>
+
+  </tr>
+<% end %>
+</table>
+</center></em>
+<br />
+
+

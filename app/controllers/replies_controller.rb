@@ -14,7 +14,7 @@ class RepliesController < ApplicationController
   # GET /replies/1.json
   def show
     @reply = Reply.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @reply }
@@ -25,7 +25,13 @@ class RepliesController < ApplicationController
   # GET /replies/new.json
   def new
     @reply = Reply.new
-
+    #@reply.post_id = @post.id
+    @user =  User.find(session[:user_id])
+    if (@user) 
+      @reply.user_id = @user.id
+    else
+      @reply.user_id = 0
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @reply }
@@ -39,11 +45,18 @@ class RepliesController < ApplicationController
 
   # POST /replies
   # POST /replies.json
-  def create
-    @reply = Reply.new(params[:reply])
-
+  def create 
+    @reply = Reply.last
+    
+    rep = (params[:reply])
+    #@reply.update_attributes( :reply_text => rep.replytext )
+    @reply.update_attributes( :numvotes => 0.to_a )
+     #@reply.update_attributes( :user_id => @user.id )
+     #@reply.user_id = current_user.id
+     #@reply.save
+    #@reply.post_id = @post.id
     respond_to do |format|
-      if @reply.save
+      if true
         format.html { redirect_to @reply, notice: 'Reply was successfully created.' }
         format.json { render json: @reply, status: :created, location: @reply }
       else

@@ -16,14 +16,20 @@ BackChannelApp2::Application.routes.draw do
   resources :posts
 
 
+ root :to => 'posts#index'
+ 
+get "/posts/createreply"
+post "/posts/createreply"
+get "/users/makeadmin"
+  #get "/posts"
+  #get "/posts/index"
 
-  get "/posts"
-  get "/posts/new"
-  
-
+post "/sessions/create"  
+get "/sessions/new"
+post "/sessions/new"
   #get "home/index"
 
-
+  resources :sessions
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -73,7 +79,7 @@ BackChannelApp2::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'posts#index'
+ 
 
   # See how all your routes lay out with "rake routes"
 
