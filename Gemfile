@@ -4,12 +4,12 @@ gem 'rails', '3.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
+#gem 'sqlite3'
 group :production do
-  gem 'pg'
+ gem 'pg'
 end
 group :development, :test do
-  gem 'sqlite3'
+ gem 'sqlite3' ,'1.3.4'
 end
 
 
@@ -32,7 +32,7 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 gem "rspec-rails", :group => [:test, :development]
-
+gem 'webrat', "~> 0.7.3"
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
