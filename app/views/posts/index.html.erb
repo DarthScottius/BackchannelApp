@@ -43,7 +43,7 @@
   	             end %>
   	            <% str = "Votes:" +  val%>
   	            <% if @user %>
-    <td><%= link_to str , :controller => "votes", :action => "new" ,:postid => post.id , :votetype => 1  %>&nbsp; </td>
+    <td><%= link_to str , :controller => "votes", :action => "new" ,:postid => post.id , :votetype => 1 , :path =>'/' %>&nbsp; </td>
     <% else %>
     <td><%= str %></td>
     <% end %>

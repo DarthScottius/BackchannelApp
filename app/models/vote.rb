@@ -15,5 +15,5 @@ class Vote < ActiveRecord::Base
   def self.test
     
   end
-  
+
 end

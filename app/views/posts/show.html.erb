@@ -13,6 +13,9 @@
   <% @replies.each do |reply|%>
     <% if reply.post_id == @post.id %><br>
         <% usr = User.find(reply.user_id) %>
+         <% str = "Votes:" + reply.numvotes.to_s %>
+         <% path = "/posts/"+@post.id.to_s %>
+         <%= link_to str, :controller => "votes", :action => "new" ,:postid => reply.id , :votetype => 2, :path => path %> 
         <%= usr.user_name %> ---> <%= reply.replytext %>
     	<br>
     <% end%>
